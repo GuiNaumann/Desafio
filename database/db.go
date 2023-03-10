@@ -6,7 +6,7 @@ import (
     "gorm.io/driver/postgres"
     "gorm.io/gorm"
 )
-
+//gorm sendo utilizado para fazer fazer comunicação da database
 var (
     DB  *gorm.DB
     err error

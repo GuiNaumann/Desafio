@@ -1,20 +1,19 @@
 create table animals(
-    id         serial primary key,
+    id         		serial primary key,
 	sex				varchar	,
-    datbirth 		integer ,
+    datbirth 		varchar, 
 	birthweight		integer	,
 	flock  	        varchar	,
 	racename		varchar ,
 	weightnow		integer ,
-	datesale 		integer ,
+	datesale 		varchar,
 	saleweight		integer ,
 	situation		varchar	
 );
 
 create table actions(
     id                  serial primary key,
-	Identifier        	varchar,
-    Actiondate 		    integer ,
+    Actiondate 		    varchar,
 	flock		        varchar ,
 	Descriptions  	    varchar	,
 	Affectedanimals		varchar ,
@@ -26,7 +25,9 @@ create table actions(
 
 create table reports(
     id	 	 	                serial primary key,
-    Datephysicalproblem		    integer ,
+	Problemcode					integer ,
+    Datephysicalproblem		    varchar,
 	Descriptions 		        varchar	,
 	Imageproblem	 	  	    varchar	
+
 );
