@@ -10,6 +10,7 @@ import (
     "desafio/models"
     "encoding/base64"
     "io/ioutil"
+    //"strings"
    )
 // Home page
 func Home(w http.ResponseWriter, r *http.Request) {
@@ -190,8 +191,9 @@ func Teste(w http.ResponseWriter, r *http.Request) {
 
     //dencoded := base64.StdEncoding.EncodeToString([]byte(id))
     dencoded, _ := base64.StdEncoding.DecodeString(id)
+
         // 
-        err := ioutil.WriteFile("C:/teste/" + "https://" + string(dencoded) + ".jpg", []byte(dencoded), 0644)
+        err := ioutil.WriteFile("C:/teste/" + id + ".jpg", String(byte[dencoded]), 0644)
         if err != nil {
             w.WriteHeader(http.StatusInternalServerError)
             fmt.Fprintf(w, "Failed to save encoded URL: %v", err)
@@ -210,7 +212,7 @@ func Testeee(w http.ResponseWriter, r *http.Request) {
 
     encoded := base64.StdEncoding.EncodeToString([]byte(id))
         // 
-        err := ioutil.WriteFile("C:/teste/" + id + ".jpg", []byte(dencoded), 0644)
+        err := ioutil.WriteFile("C:/teste/" + id + ".jpg", []byte(encoded), 0644)
         if err != nil {
             w.WriteHeader(http.StatusInternalServerError)
             fmt.Fprintf(w, "Failed to save encoded URL: %v", err)
