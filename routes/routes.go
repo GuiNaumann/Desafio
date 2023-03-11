@@ -49,7 +49,7 @@ func HandleRequests() {
 
     r.HandleFunc("/reports", controllers.CreateReports).Methods("Post")
     r.HandleFunc("/reports/save/{url}", controllers.Teste).Methods("Get")
-    r.HandleFunc("/reports/test/{descriptions}", controllers.Puxa).Methods("GET")
+    r.HandleFunc("/reports/test/{url}", controllers.Testeee).Methods("GET")
 
 
     r.HandleFunc("/reports/{id}", controllers.DeleteReports).Methods("Delete")

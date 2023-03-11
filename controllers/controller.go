@@ -148,10 +148,10 @@ func GetReports(w http.ResponseWriter, r *http.Request) {
 }
 // função para criar
 func CreateReports(w http.ResponseWriter, r *http.Request) {
-	var t models.Report
-    json.NewDecoder(r.Body).Decode(&t)
-    database.DB.Create(&t)
-    json.NewEncoder(w).Encode(t)
+	var tt models.Report
+    json.NewDecoder(r.Body).Decode(&tt)
+    database.DB.Create(&tt)
+    json.NewEncoder(w).Encode(tt)
 }
 //função para deletar report
 func DeleteReports(w http.ResponseWriter, r *http.Request){
@@ -188,10 +188,10 @@ func Teste(w http.ResponseWriter, r *http.Request) {
     database.DB.Where("imageproblem = ?", id).Find(&t)
    // fmt.Printf(id, t)
 
-    encoded := base64.StdEncoding.EncodeToString([]byte(id))
-
+    //dencoded := base64.StdEncoding.EncodeToString([]byte(id))
+    dencoded, _ := base64.StdEncoding.DecodeString(id)
         // 
-        err := ioutil.WriteFile("C:/teste/" + id + ".jpg", []byte(id), 0644)
+        err := ioutil.WriteFile("C:/teste/" + "https://" + string(dencoded) + ".jpg", []byte(dencoded), 0644)
         if err != nil {
             w.WriteHeader(http.StatusInternalServerError)
             fmt.Fprintf(w, "Failed to save encoded URL: %v", err)
@@ -201,20 +201,21 @@ func Teste(w http.ResponseWriter, r *http.Request) {
     json.NewEncoder(w).Encode(t)
 }
 
-func Puxa(w http.ResponseWriter, r *http.Request) {
+func Testeee(w http.ResponseWriter, r *http.Request) {
     vars := mux.Vars(r)
     id := vars["url"]
-    var actions []models.Report
-    database.DB.Where("imageproblem = ?", id).Find(&actions)
-
+    var t []models.Report
+    database.DB.Where("imageproblem = ?", id).Find(&t)
+   // fmt.Printf(id, t)
 
     encoded := base64.StdEncoding.EncodeToString([]byte(id))
-    fmt.Printf(encoded)
+        // 
+        err := ioutil.WriteFile("C:/teste/" + id + ".jpg", []byte(dencoded), 0644)
+        if err != nil {
+            w.WriteHeader(http.StatusInternalServerError)
+            fmt.Fprintf(w, "Failed to save encoded URL: %v", err)
+            return
+        }
 
-    database.DB.First(&actions, id)
-    json.NewDecoder(r.Body).Decode(&actions)
-    database.DB.Save(&actions)
-
-    fmt.Printf(id)
-    json.NewEncoder(w).Encode(actions)
+    json.NewEncoder(w).Encode(t)
 }
