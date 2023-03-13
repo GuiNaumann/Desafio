@@ -193,7 +193,7 @@ func Teste(w http.ResponseWriter, r *http.Request) {
     dencoded, _ := base64.StdEncoding.DecodeString(id)
 
         // 
-        err := ioutil.WriteFile("C:/teste/" + id + ".jpg", String(byte[dencoded]), 0644)
+	err := ioutil.WriteFile("C:/teste/" + id + ".jpg", []byte(dencoded)), 0644)
         if err != nil {
             w.WriteHeader(http.StatusInternalServerError)
             fmt.Fprintf(w, "Failed to save encoded URL: %v", err)
